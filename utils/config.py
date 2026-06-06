@@ -1,0 +1,18 @@
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+class Settings(BaseSettings):
+    """Parses system environment or `.env` file variables into structured Python attributes."""
+    database_hostname: str
+    database_port: str
+    database_password: str
+    database_name: str
+    database_username: str
+    
+    hash_secret_key: str  
+    algorithm: str
+    access_token_expire_minutes: int
+
+    # Configures Pydantic to read automatically from local filesystem
+    model_config = SettingsConfigDict(env_file=".env")
+
+settings = Settings()

@@ -1,0 +1,88 @@
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+import db_tables.tables as tables
+from db import engine
+from routers import posts, users, auth, likes
+
+
+#form docomenration of fastapi CORS
+from fastapi.middleware.cors import CORSMiddleware
+app = FastAPI(title="Social Network Aggregator API")
+
+origins = [
+    # 1. Vite (React, Vue, Svelte, Tailwind setups)
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+
+    # 2. Next.js, Create React App, and Node/Express frontends
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+
+    # 3. Nuxt.js, legacy Vue CLI, and general Webpack setups
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+
+    # 4. Angular default port
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+
+    # 5. Mobile App Emulators (If you build an iOS/Android app later)
+    "http://10.0.2.2:8000",  # Android emulator loopback to your local machine
+
+    # 6. Your Production Domains (When you deploy)
+    "https://www.yourdomain.com",
+    "https://yourdomain.com",
+    "https://staging.yourdomain.com",
+]
+
+
+app.add_middleware(
+    CORSMiddleware, #when req comes b4 it can hit any routes it comes to this function!
+    allow_origins=origins, #which domains can talk to us, if we want public api we can =["*"]
+    allow_credentials=True, 
+    #so here is the deal with credentials: When a browser makes a request, it normally strips out things like HTTP 
+        #cookies, TLS client certificates, or Authorization headers (like your JWT tokens) for security reasons unless 
+            #explicitly told it's allowed. Setting allow_credentials=True tells the browser: "Yes, it is safe to send the
+                #user's login tokens and cookies along with the cross-origin request.
+                
+    allow_methods=["*"], #this rn means all types of request get,post etc! but we can specify which kind of req v accepiting
+    allow_headers=["*"], #same for headers
+)
+
+
+
+
+# Mount operational modular router components 
+app.include_router(router=posts.router)
+app.include_router(router=users.router)
+app.include_router(router=auth.router)
+app.include_router(router=likes.router)
+
+@app.get("/", include_in_schema=False)
+def home():
+    """Redirects the index route base entry straight to Interactive OpenAPI documents."""
+    return RedirectResponse(url="/docs")
+
+
+
+
+#git lecture:
+"""
+1) we made .gitignore which holds the files we dont want pushed to githup
+2) then we do pip list > requirements.txt -> since we cant import full venv we can the libs we used and theri versions ;)
+3) this way if someone cloned our repo they can just pip install -r requirements.txt and boom
+4) i went and signed in to github and created a new repo it gave me these commands:
+echo "# Example-FastApi-" >> README.md 
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Floats-del/Example-FastApi-.git
+git push -u origin main
+
+we dont want the readme so far in lecture so we
+5) now ill be in virtual envirement dw, git init there -> all files will trun green 
+6) we will skip the add README.md rather we will do: git add --all -> we will get errors dw
+7) then to actaully push them to git we do: git commit -m "my first push of all files"
+
+"""
