@@ -81,8 +81,10 @@ git remote add origin https://github.com/Floats-del/Example-FastApi-.git
 git push -u origin main
 
 we dont want the readme so far in lecture so we
-5) now ill be in virtual envirement dw, git init there -> all files will trun green 
+5) now ill be in virtual envirement dw, git init 
 6) we will skip the add README.md rather we will do: git add --all -> we will get errors dw
 7) then to actaully push them to git we do: git commit -m "my first push of all files"
+8) then we do: git branch -M main
+9) then we do: git remote add origin https://github.com/Floats-del/Example-FastApi-.git -> stores on github our data
 
 """
