@@ -97,7 +97,7 @@ we dont want the readme so far in lecture so we
 
 
 13) well comment 10,11,12 are added to github repo all i had to do was ctrl+s -> git add . -> git commit -m "fix: actually added comments 10 and 11" -> git push origin main
-    and done!
+    and done! we could also: git add filename -> for solo update 
 14) now lets see rollback since atp i must have 2 versions of this code with 10,11,12 and without!
 15) git log --oneline -> tells us sanpshot histry:
 2795685 (HEAD -> main, origin/main) fix: actually added comments 10 and 11
