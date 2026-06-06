@@ -118,6 +118,19 @@ these ids are just like revision numbers in alembic ;)
 22) git log --oneline --graph --all --decorate -> see all snapshots
 23) git checkout <hash> -> goes to a specific snapshot!
 
+24) delete file form dir and git:
+git rm filename.py
+git commit -m "remove filename.py"
+git push
+
+
+25) delete file form git but keep on dir:
+git rm --cached filename.py
+git commit -m "stop tracking filename.py"
+git push
+
+if its a folder do: git rm -r --cached name
+
 
 points to be noted: (IMP)
 If you haven't committed them: Git will warn you that you might lose those changes if you switch branches. You should either git commit them or git stash them first.
