@@ -93,4 +93,33 @@ we dont want the readme so far in lecture so we
 11) then we make some changes like currently im wrtining this comment and then we do: 
     git commit -m "feat: added comment 10 and 11 lol just to see git's responce"
 12) then git push origin main -> to actually upload on gh
+
+
+
+13) well comment 10,11,12 are added to github repo all i had to do was ctrl+s -> git add . -> git commit -m "fix: actually added comments 10 and 11" -> git push origin main
+    and done!
+14) now lets see rollback since atp i must have 2 versions of this code with 10,11,12 and without!
+15) git log --oneline -> tells us sanpshot histry:
+2795685 (HEAD -> main, origin/main) fix: actually added comments 10 and 11
+6498506 feat: added comment 10 and 11 lol just to see git's responce
+7fd7f7e my first push of all files
+f5509b4 my first push of all files
+
+these ids are just like revision numbers in alembic ;)
+16) git checkout 7fd7f7e -> lets us check old version not fully rollback!
+17) to comeback form old version checking we do: git checkout main
+18) litral rollback: git revert 6498506  -> we can revert back but future changes snapshots exits!
+
+19) git reset --hard 7fd7f7e -> rollsback and destrous future snapshotes!
+20) to come back to latest snapshot we do: git checkout main 
+
+
+21) git checkout HEAD~1 -> 1 step back 
+22) git log --oneline --graph --all --decorate -> see all snapshots
+23) git checkout <hash> -> goes to a specific snapshot!
+
+
+points to be noted: (IMP)
+If you haven't committed them: Git will warn you that you might lose those changes if you switch branches. You should either git commit them or git stash them first.
+If you already committed them: You are safe! Since you made a commit, those changes are saved in the history, and you can switch back and forth freely.
 """
