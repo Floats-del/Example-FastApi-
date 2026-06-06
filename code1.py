@@ -88,4 +88,9 @@ we dont want the readme so far in lecture so we
 8) then we do: git branch -M main
 9) then we do: git remote add origin https://github.com/Floats-del/Example-FastApi-.git -> stores on github our data
 
+
+10) git add . -> tells github to add new changes to github! (btw ive successfully added my stuff yo gh currently till point(9))
+11) then we make some changes like currently im wrtining this comment and then we do: 
+    git commit -m "feat: added comment 10 and 11 lol just to see git's responce"
+12) then git push origin main -> to actually upload on gh
 """
